@@ -4,6 +4,7 @@ set -e
 
 OWNER=${OWNER:-fss}
 PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server"
+GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -27,7 +28,15 @@ FIREFOX_FILE=firefox-developer-edition.tar.bz2
 
 curl -sLo ${FIREFOX_FILE} "https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US"
 mkdir -p /opt/firefox
-tar -C /opt/firefox -xjvf ${FIREFOX_FILE}
+tar -C /opt -xjvf ${FIREFOX_FILE}
 rm -f ${FIREFOX_FILE}
+
+curl -sLO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
+mkdir -p /usr/local/go
+tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
+rm go${GO_VERSION}.linux-amd64.tar.gz
+
+chown -R ${OWNER}:${OWNER} /usr/local/go /opt/firefox
+ln -s /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
