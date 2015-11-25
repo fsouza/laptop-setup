@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 OWNER=${OWNER:-fss}
 PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server"
 
