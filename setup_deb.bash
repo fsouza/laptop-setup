@@ -3,13 +3,15 @@
 set -e
 
 OWNER=${OWNER:-fss}
-PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server"
+PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine"
 GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
 
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-echo deb http://repository.spotify.com testing non-free | tee /etc/apt/sources.list.d/spotify.list
+echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources.list.d/spotify.list
+echo "deb https://apt.dockerproject.org/repo debian-jessie main" | tee /etc/apt/sources.list.d/docker.list
 
 sed -ie '/^deb /s/jessie main$/\0 non-free contrib/' /etc/apt/sources.list
 
@@ -36,7 +38,7 @@ mkdir -p /usr/local/go
 tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
 rm go${GO_VERSION}.linux-amd64.tar.gz
 
-chown -R ${OWNER}:${OWNER} /usr/local/go /opt/firefox
+chown -R ${OWNER}:${OWNER} /opt/firefox
 ln -s /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
