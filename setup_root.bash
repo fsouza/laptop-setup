@@ -39,11 +39,12 @@ curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.g
 mkdir -p /usr/local/go
 tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
 rm go${GO_VERSION}.linux-amd64.tar.gz
+ln -sf /usr/local/go/bin/* /usr/local/bin
 
 mkdir -p /usr/local/var
 
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
-ln -s /opt/firefox/firefox /usr/bin/firefoxd
+ln -sf /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
 
@@ -53,4 +54,4 @@ curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --y
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get install nodejs -y
 
-ln -s /usr/bin/nodejs /usr/bin/node
+ln -sf /usr/bin/nodejs /usr/bin/node
