@@ -40,4 +40,11 @@ cat >.vimrc <<EOF
 source $HOME/.vim/.vimrc
 EOF
 
+mkdir -p $HOME/.config
+pushd $HOME/.config
+curl -L "https://doc-00-8g-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/luqktds9d1jrgcvavtmijhftuukt55f4/1448503200000/17430741088418587958/*/0B2S6OO3hfaEfS2k1M1VVVVQ4c1E?e=download" -o dconf.tar.gz
+tar -xzvf dconf.tar.gz
+rm dconf.tar.gz
+popd
+
 popd
