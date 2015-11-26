@@ -50,3 +50,7 @@ popd
 usermod -G sudo ${OWNER}
 
 curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
+curl -sL https://deb.nodesource.com/setup_4.x | bash -
+apt-get install nodejs -y
+
+ln -s /usr/bin/nodejs /usr/bin/node
