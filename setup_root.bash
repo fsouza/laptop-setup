@@ -57,7 +57,7 @@ ln -sf /opt/firefox/firefox /usr/local/bin/firefox
 
 mkdir -p /usr/local/var
 
-id ${OWNER} || useradd -m ${OWNER}
+id ${OWNER} || useradd -m -s /bin/bash ${OWNER}
 
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
 
