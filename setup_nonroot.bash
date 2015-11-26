@@ -47,4 +47,8 @@ tar -xzvf dconf.tar.gz
 rm dconf.tar.gz
 popd
 
+source $HOME/.bashrc
+go get github.com/nsf/gocode/...
+go get github.com/odeke-em/drive/cmd/drive
+
 popd
