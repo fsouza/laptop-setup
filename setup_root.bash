@@ -23,9 +23,16 @@ apt-get install ${PACKAGES} -qqy
 
 pushd /tmp
 
-curl -LO https://update.gitter.im/linux64/gitter_2.4.0_amd64.deb
-curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-1.2.6-amd64.deb
-dpkg -i *.deb
+if [ ! -f /usr/local/bin/gitter ]; then
+	curl -LO https://update.gitter.im/linux64/gitter_2.4.0_amd64.deb
+	dpkg -i gitter_2.4.0_amd64.deb
+fi
+
+if [ ! -f /usr/bin/slack ]; then
+	curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-1.2.6-amd64.deb
+	dpkg -i slack-desktop-1.2.6-amd64.deb
+fi
+
 rm -f *.deb
 
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
