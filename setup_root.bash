@@ -40,7 +40,9 @@ mkdir -p /usr/local/go
 tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
 rm go${GO_VERSION}.linux-amd64.tar.gz
 
-chown -R ${OWNER}:${OWNER} /opt/firefox
+mkdir -p /usr/local/var
+
+chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
 ln -s /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
