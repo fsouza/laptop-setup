@@ -21,6 +21,12 @@ apt-get update
 apt-get dist-upgrade -y
 apt-get install ${PACKAGES} -qqy
 
+cat > /etc/locale.gen <<EOF
+en_US.UTF-8 UTF-8
+pt_BR.UTF-8 UTF-8
+EOF
+locale-gen
+
 pushd /tmp
 
 if [ ! -f /usr/local/bin/gitter ]; then
