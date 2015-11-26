@@ -13,6 +13,10 @@ if [ ! -d dotfiles ]; then
 	git clone git@github.com:fsouza/dotfiles.git
 fi
 
+pushd dotfiles
+git submodule update --init --recursive
+popd
+
 popd
 
 pushd ${HOME}
