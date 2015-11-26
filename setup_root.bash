@@ -48,6 +48,7 @@ ln -sf /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
 
+id ${OWNER} || useradd -m ${OWNER}
 usermod -G sudo ${OWNER}
 
 curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
