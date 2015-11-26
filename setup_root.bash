@@ -30,23 +30,29 @@ rm -f *.deb
 
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
 
-curl -Lo ${FIREFOX_FILE} "https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US"
-mkdir -p /opt/firefox
-tar -C /opt -xjvf ${FIREFOX_FILE}
-rm -f ${FIREFOX_FILE}
+if [ ! -d /opt/firefox ]; then
+	curl -Lo ${FIREFOX_FILE} "https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US"
+	mkdir -p /opt/firefox
+	tar -C /opt -xjvf ${FIREFOX_FILE}
+	rm -f ${FIREFOX_FILE}
+fi
 
-curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
-mkdir -p /usr/local/go
-tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
-rm go${GO_VERSION}.linux-amd64.tar.gz
+
+if [ ! -d /usr/local/go ]; then
+	curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
+	mkdir -p /usr/local/go
+	tar -C /usr/local -xzvf go${GO_VERSION}.linux-amd64.tar.gz
+	rm go${GO_VERSION}.linux-amd64.tar.gz
+fi
+
 ln -sf /usr/local/go/bin/* /usr/local/bin
+ln -sf /opt/firefox/firefox /usr/local/bin/firefox
 
 mkdir -p /usr/local/var
 
 id ${OWNER} || useradd -m ${OWNER}
 
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
-ln -sf /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
 
