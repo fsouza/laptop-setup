@@ -43,12 +43,13 @@ ln -sf /usr/local/go/bin/* /usr/local/bin
 
 mkdir -p /usr/local/var
 
+id ${OWNER} || useradd -m ${OWNER}
+
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
 ln -sf /opt/firefox/firefox /usr/bin/firefoxd
 
 popd
 
-id ${OWNER} || useradd -m ${OWNER}
 usermod -G sudo ${OWNER}
 
 curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
