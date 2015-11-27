@@ -3,7 +3,7 @@
 set -e
 
 OWNER=${OWNER:-fss}
-PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip"
+PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip qemu-kvm libvirt-bin virtinst"
 GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
@@ -71,7 +71,7 @@ chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
 
 popd
 
-usermod -G sudo ${OWNER}
+usermod -G sudo,kvm,libvirt ${OWNER}
 
 if [ ! -f /usr/local/bin/rustc ]; then
 	curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
