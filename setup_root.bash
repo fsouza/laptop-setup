@@ -41,6 +41,11 @@ if [ ! -f /usr/bin/slack ]; then
 	dpkg -i slack-desktop-1.2.6-amd64.deb
 fi
 
+if [ ! -f /usr/bin/vagrant ]; then
+	curl -LO https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_x86_64.deb
+	dpkg -i vagrant_1.7.4_x86_64.deb
+fi
+
 rm -f *.deb
 
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
