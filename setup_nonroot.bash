@@ -52,3 +52,5 @@ go get github.com/nsf/gocode/...
 go get github.com/odeke-em/drive/cmd/drive
 
 popd
+
+vagrant plugin install vagrant-kvm
