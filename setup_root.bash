@@ -19,7 +19,7 @@ echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources
 echo "deb https://apt.dockerproject.org/repo debian-jessie main" | tee /etc/apt/sources.list.d/docker.list
 echo "deb http://download.mono-project.com/repo/debian beta main" | tee /etc/apt/sources.list.d/mono-xamarin-beta.list
 echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
-echo "deb http://download.virtualbox.org/virtualbox/debian jessie contrib non-free" | tee /etc/apt-sources.list.d/virtualbox.list
+echo "deb http://download.virtualbox.org/virtualbox/debian jessie contrib non-free" | tee /etc/apt/sources.list.d/virtualbox.list
 
 sed -ie '/^deb /s/jessie main$/\0 non-free contrib/' /etc/apt/sources.list
 
