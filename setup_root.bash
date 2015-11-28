@@ -59,8 +59,8 @@ if [ ! -d /opt/firefox ]; then
 	mkdir -p /opt/firefox
 	tar -C /opt -xjvf ${FIREFOX_FILE}
 	rm -f ${FIREFOX_FILE}
+	curl -L https://github.com/fsouza/laptop-setup/raw/master/data/firefox-developer-logo.png -o /opt/firefox/firefox-logo.png
 fi
-
 
 if [ ! -d /usr/local/go ]; then
 	curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
