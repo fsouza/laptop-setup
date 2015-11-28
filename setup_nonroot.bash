@@ -42,7 +42,7 @@ EOF
 
 mkdir -p $HOME/.config
 pushd $HOME/.config
-curl -L https://gist.github.com/fsouza/6fe9e94d4a0a780ca4e4/raw/fe50d0495614f7b18f105cf449a974328dbaa6bf/dconf.tar.gz | tar -xzvf -
+curl -L https://github.com/fsouza/laptop-setup/raw/master/dconf.tar.gz | tar -xzvf -
 popd
 
 source $HOME/.bashrc
