@@ -4,7 +4,7 @@ set -e
 
 OWNER=${OWNER:-fss}
 GROUPS="@virtualization "
-PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel libxml2-devel libxslt-devel community-mysql-server community-mysql-libs youtube-dl python3 python3-devel mongodb-server parallel gcc-gfortran scala mono mono-basic pypy tree python-virtualenv redis xclip virtualbox-5.0 dkms libvirt-devel golang vagrant epel spotify-client"
+PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel libxml2-devel libxslt-devel community-mysql-server community-mysql-libs youtube-dl python3 python3-devel mongodb-server parallel gcc-gfortran scala mono-devel mono-basic pypy tree python-virtualenv redis xclip VirtualBox-5.0 dkms libvirt-devel golang vagrant spotify-client"
 
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
