@@ -27,9 +27,9 @@ ln -sf Projects/dotfiles/.hgignore_global
 ln -sf Projects/dotfiles/.hgrc
 ln -sf Projects/dotfiles/.bash_profile .bashrc
 
-rm -rf .vim
-
-git clone git@github.com:fsouza/vimfiles.git .vim
+if [ ! -d .vim ]; then
+	git clone git@github.com:fsouza/vimfiles.git .vim
+fi
 
 pushd .vim
 git submodule update --init --recursive
