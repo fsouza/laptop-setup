@@ -30,8 +30,8 @@ if [ ! -f /usr/local/bin/gitter ]; then
 fi
 
 if [ ! -f /usr/bin/slack ]; then
-	curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-1.2.6-amd64.deb
-	dpkg -i slack-desktop-1.2.6-amd64.deb
+	curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.2.6-0.1.fc21.x86_64.rpm
+	dnf install -y slack-1.2.6-0.1.fc21.x86_64.rpm
 fi
 
 rm -f *.deb
@@ -47,9 +47,6 @@ fi
 ln -sf /opt/firefox/firefox /usr/bin/firefox
 
 mkdir -p /usr/local/var
-
-id ${OWNER} || useradd -m -s /bin/bash ${OWNER}
-
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var
 
 popd
