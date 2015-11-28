@@ -8,8 +8,11 @@ PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel l
 
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
+systemctl disable dnf-makecache.timer
+
 dnf clean all
-dnf update -y
+dnf check-update -y
+dnf upgrade -y
 
 dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -27,9 +30,7 @@ locale-gen
 pushd /tmp
 
 if [ ! -f /usr/bin/slack ]; then
-	curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.2.6-0.1.fc21.x86_64.rpm
-	dnf install -y slack-1.2.6-0.1.fc21.x86_64.rpm
-	rm -f slack-1.2.6-0.1.fc21.x86_64.rpm
+	dnf install -y https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.2.6-0.1.fc21.x86_64.rpm
 fi
 
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
