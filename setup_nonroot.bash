@@ -42,7 +42,7 @@ EOF
 
 mkdir -p $HOME/.config
 pushd $HOME/.config
-curl -L "https://doc-00-8g-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/luqktds9d1jrgcvavtmijhftuukt55f4/1448503200000/17430741088418587958/*/0B2S6OO3hfaEfS2k1M1VVVVQ4c1E?e=download" -o dconf.tar.gz
+curl -LO https://gist.github.com/fsouza/6fe9e94d4a0a780ca4e4/raw/fe50d0495614f7b18f105cf449a974328dbaa6bf/dconf.tar.gz
 tar -xzvf dconf.tar.gz
 rm dconf.tar.gz
 popd
