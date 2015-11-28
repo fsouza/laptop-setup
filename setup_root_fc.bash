@@ -8,6 +8,8 @@ PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel l
 
 curl -L http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
 
+echo "fastestmirror=true" >> /etc/dnf/dnf.conf
+
 echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources.list.d/spotify.list
 
 dnf clean all
@@ -42,7 +44,7 @@ if [ ! -d /opt/firefox ]; then
 	tar -C /opt -xjvf ${FIREFOX_FILE}
 	rm -f ${FIREFOX_FILE}
 fi
-ln -sf /opt/firefox/firefox /usr/local/bin/firefox
+ln -sf /opt/firefox/firefox /usr/bin/firefox
 
 mkdir -p /usr/local/var
 
