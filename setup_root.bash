@@ -62,6 +62,21 @@ if [ ! -d /opt/firefox ]; then
 	curl -L https://github.com/fsouza/laptop-setup/raw/master/data/firefox-developer-logo.png -o /opt/firefox/firefox-logo.png
 fi
 
+cat > /usr/share/applications/firefox.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=Firefox Developer Edition
+Comment=Browse the World Wide Web
+GenericName=Web Browser
+Exec=/opt/firefox/firefox %u
+Terminal=false
+X-Multiple Args=false
+Type=Application
+Icon=/opt/firefox/firefox-logo.png
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
+EOF
+
 if [ ! -d /usr/local/go ]; then
 	curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
 	mkdir -p /usr/local/go
