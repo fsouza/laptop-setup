@@ -10,11 +10,10 @@ echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
 systemctl disable dnf-makecache.timer
 
-dnf clean all
 dnf check-update -y
 dnf upgrade -y
 
-dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 dnf config-manager --add-repo=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
 dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
