@@ -33,7 +33,7 @@ fi
 
 pushd .vim
 git submodule update --init --recursive
-mkdir swp
+mkdir -p swp
 popd
 
 cat >.vimrc <<EOF
