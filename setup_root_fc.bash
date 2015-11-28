@@ -4,16 +4,18 @@ set -e
 
 OWNER=${OWNER:-fss}
 GROUPS="@virtualization "
-PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel libxml2-devel libxslt-devel community-mysql-server community-mysql-libs youtube-dl python3 python3-devel mongodb-server parallel gcc-gfortran scala mono mono-basic pypy tree python-virtualenv redis xclip virtualbox-5.0 dkms libvirt-devel golang vagrant epel"
-
-curl -L http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
+PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel libxml2-devel libxslt-devel community-mysql-server community-mysql-libs youtube-dl python3 python3-devel mongodb-server parallel gcc-gfortran scala mono mono-basic pypy tree python-virtualenv redis xclip virtualbox-5.0 dkms libvirt-devel golang vagrant epel spotify-client"
 
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
-echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources.list.d/spotify.list
-
 dnf clean all
 dnf update -y
+
+dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+dnf config-manager --add-repo=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+
 dnf install ${PACKAGES} -y
 
 cat > /etc/locale.gen <<EOF
@@ -24,17 +26,11 @@ locale-gen
 
 pushd /tmp
 
-if [ ! -f /usr/local/bin/gitter ]; then
-	curl -LO https://update.gitter.im/linux64/gitter_2.4.0_amd64.deb
-	dpkg -i gitter_2.4.0_amd64.deb
-fi
-
 if [ ! -f /usr/bin/slack ]; then
 	curl -LO https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.2.6-0.1.fc21.x86_64.rpm
 	dnf install -y slack-1.2.6-0.1.fc21.x86_64.rpm
+	rm -f slack-1.2.6-0.1.fc21.x86_64.rpm
 fi
-
-rm -f *.deb
 
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
 
@@ -58,4 +54,4 @@ fi
 curl -sSL https://get.docker.com/ | sh
 
 curl --silent --location https://rpm.nodesource.com/setup | bash -
-dnf -y install nodejs
+dnf install nodejs -y
