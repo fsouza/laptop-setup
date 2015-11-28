@@ -21,11 +21,10 @@ dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 dnf install ${PACKAGES} -y
 
-cat > /etc/locale.gen <<EOF
-en_US.UTF-8 UTF-8
-pt_BR.UTF-8 UTF-8
-EOF
-locale-gen
+set +e
+localedef -c -i en_US -f UTF-8 en_US.UTF-8
+localedef -c -i pt_BR -f UTF-8 pt_BR.UTF-8
+set -e
 
 pushd /tmp
 
