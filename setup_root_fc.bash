@@ -9,7 +9,6 @@ PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel l
 curl -L http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
 
 echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources.list.d/spotify.list
-echo "deb https://apt.dockerproject.org/repo debian-jessie main" | tee /etc/apt/sources.list.d/docker.list
 
 dnf clean all
 dnf update -y
@@ -52,8 +51,6 @@ id ${OWNER} || useradd -m -s /bin/bash ${OWNER}
 chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var
 
 popd
-
-usermod -G sudo,kvm,libvirt ${OWNER}
 
 if [ ! -f /usr/local/bin/rustc ]; then
 	curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
