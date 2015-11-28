@@ -86,6 +86,8 @@ if [ ! -f /usr/local/bin/rustc ]; then
 	curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
 fi
 
-curl -sL https://deb.nodesource.com/setup_4.x | bash -
-apt-get install nodejs -y
-ln -sf /usr/bin/nodejs /usr/bin/node
+if [ ! -f /usr/bin/node ]; then
+	curl -sL https://deb.nodesource.com/setup_4.x | bash -
+	apt-get install nodejs -y
+	ln -sf /usr/bin/nodejs /usr/bin/node
+fi
