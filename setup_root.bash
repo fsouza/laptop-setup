@@ -27,7 +27,7 @@ sed -ie '/^deb /s/jessie main$/\0 non-free contrib/' /etc/apt/sources.list
 
 apt-get update
 apt-get dist-upgrade -y
-apt-get install ${PACKAGES} -qqy
+apt-get install ${PACKAGES} -qy
 
 cat > /etc/locale.gen <<EOF
 en_US.UTF-8 UTF-8
