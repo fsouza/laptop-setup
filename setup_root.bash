@@ -7,6 +7,8 @@ PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-
 GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install apt-transport-https
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
