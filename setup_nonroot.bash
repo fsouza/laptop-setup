@@ -19,10 +19,6 @@ pushd .dotfiles
 git submodule update --init --recursive
 popd
 
-popd
-
-pushd ${HOME}
-
 ln -sf .dotfiles/.gitconfig
 ln -sf .dotfiles/.gitignore_global
 ln -sf .dotfiles/.hgignore_global
