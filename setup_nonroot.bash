@@ -30,9 +30,10 @@ ln -sf Projects/dotfiles/.hgrc
 ln -sf Projects/dotfiles/.bash_profile .bashrc
 
 if [ -d ${DATA_DIR} ]; then
-	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive
+	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt
 	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
 	ln -sf ${DATA_DIR}/drive $HOME/gdrive
+	ln -sf ${DATA_DIR}/opt $HOME/opt
 fi
 
 if [ ! -d .vim ]; then
