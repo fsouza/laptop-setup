@@ -2,6 +2,8 @@
 
 set -e
 
+DATA_DIR=/var/data/${USER}
+
 echo "Please ensure that you have the proper SSH keys and then press enter"
 read
 
@@ -26,6 +28,12 @@ ln -sf Projects/dotfiles/.gitignore_global
 ln -sf Projects/dotfiles/.hgignore_global
 ln -sf Projects/dotfiles/.hgrc
 ln -sf Projects/dotfiles/.bash_profile .bashrc
+
+if [ -d ${DATA_DIR} ]; then
+	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive
+	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
+	ln -sf ${DATA_DIR}/drive $HOME/gdrive
+fi
 
 if [ ! -d .vim ]; then
 	git clone git@github.com:fsouza/vimfiles.git .vim
