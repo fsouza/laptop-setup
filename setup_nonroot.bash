@@ -29,13 +29,6 @@ ln -sf Projects/dotfiles/.hgignore_global
 ln -sf Projects/dotfiles/.hgrc
 ln -sf Projects/dotfiles/.bash_profile .bashrc
 
-if [ -d ${DATA_DIR} ]; then
-	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt
-	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
-	ln -sf ${DATA_DIR}/drive $HOME/gdrive
-	ln -sf ${DATA_DIR}/opt $HOME/opt
-fi
-
 if [ ! -d .vim ]; then
 	git clone git@github.com:fsouza/vimfiles.git .vim
 fi
@@ -55,6 +48,16 @@ curl -L https://github.com/fsouza/laptop-setup/raw/master/data/dconf.tar.gz | ta
 popd
 
 source $HOME/.bashrc
+
+if [ -d ${DATA_DIR} ]; then
+	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt ${DATA_DIR}/Code ${DATA_DIR}/rbenv
+	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
+	ln -sf ${DATA_DIR}/gdrive $HOME/gdrive
+	ln -sf ${DATA_DIR}/opt $HOME/opt
+	ln -sf ${DATA_DIR}/Code $HOME/Code
+	ln -sf ${DATA_DIR}/rbenv ${RBENV_ROOT}
+fi
+
 go get github.com/nsf/gocode/...
 go get github.com/odeke-em/drive/cmd/drive
 
