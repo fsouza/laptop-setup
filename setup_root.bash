@@ -108,3 +108,5 @@ if [ ! -f /usr/bin/node ]; then
 	apt-get install nodejs -y
 	ln -sf /usr/bin/nodejs /usr/bin/node
 fi
+
+setxkbmap -model thinkpad60 -layout br
