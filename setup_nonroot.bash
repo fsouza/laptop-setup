@@ -9,13 +9,13 @@ read
 
 mkdir -p ${HOME}/Projects
 
-pushd ${HOME}/Projects
+pushd ${HOME}
 
-if [ ! -d dotfiles ]; then
-	git clone git@github.com:fsouza/dotfiles.git
+if [ ! -d .dotfiles ]; then
+	git clone git@github.com:fsouza/dotfiles.git .dotfiles
 fi
 
-pushd dotfiles
+pushd .dotfiles
 git submodule update --init --recursive
 popd
 
@@ -23,11 +23,11 @@ popd
 
 pushd ${HOME}
 
-ln -sf Projects/dotfiles/.gitconfig
-ln -sf Projects/dotfiles/.gitignore_global
-ln -sf Projects/dotfiles/.hgignore_global
-ln -sf Projects/dotfiles/.hgrc
-ln -sf Projects/dotfiles/.bash_profile .bashrc
+ln -sf .dotfiles/.gitconfig
+ln -sf .dotfiles/.gitignore_global
+ln -sf .dotfiles/.hgignore_global
+ln -sf .dotfiles/.hgrc
+ln -sf .dotfiles/.bash_profile .bashrc
 
 if [ ! -d .vim ]; then
 	git clone git@github.com:fsouza/vimfiles.git .vim
@@ -50,11 +50,11 @@ popd
 source $HOME/.bashrc
 
 if [ -d ${DATA_DIR} ]; then
-	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt ${DATA_DIR}/Code ${DATA_DIR}/rbenv
+	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt ${DATA_DIR}/Projects ${DATA_DIR}/rbenv
 	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
 	ln -sf ${DATA_DIR}/gdrive $HOME/gdrive
 	ln -sf ${DATA_DIR}/opt $HOME/opt
-	ln -sf ${DATA_DIR}/Code $HOME/Code
+	ln -sf ${DATA_DIR}/Projects $HOME/Projects
 	ln -sf ${DATA_DIR}/rbenv ${RBENV_ROOT}
 fi
 
