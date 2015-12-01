@@ -50,6 +50,7 @@ if [ -d ${DATA_DIR} ]; then
 	ln -sfT ${DATA_DIR}/opt $HOME/opt
 	ln -sfT ${DATA_DIR}/Projects $HOME/Projects
 	ln -sfT ${DATA_DIR}/rbenv ${RBENV_ROOT}
+	ln -sfT ${DATA_DIR}/go/src ${HOME}/src
 fi
 
 go get github.com/nsf/gocode/...
