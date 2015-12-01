@@ -3,7 +3,7 @@
 set -e
 
 OWNER=${OWNER:-fss}
-PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip qemu-kvm libvirt-bin virtinst virtualbox-5.0 dkms libvirt-dev gvfs-bin firmware-iwlwifi"
+PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip qemu-kvm libvirt-bin virtinst virtualbox-5.0 dkms libvirt-dev gvfs-bin firmware-iwlwifi google-chrome-stable"
 GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
@@ -16,12 +16,14 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 
 wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc | apt-key add -
+wget -qO - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
 
 echo "deb http://repository.spotify.com testing non-free" | tee /etc/apt/sources.list.d/spotify.list
 echo "deb https://apt.dockerproject.org/repo debian-jessie main" | tee /etc/apt/sources.list.d/docker.list
 echo "deb http://download.mono-project.com/repo/debian beta main" | tee /etc/apt/sources.list.d/mono-xamarin-beta.list
 echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 echo "deb http://download.virtualbox.org/virtualbox/debian jessie contrib non-free" | tee /etc/apt/sources.list.d/virtualbox.list
+echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
 
 sed -ie '/^deb /s/jessie main$/\0 non-free contrib/' /etc/apt/sources.list
 
