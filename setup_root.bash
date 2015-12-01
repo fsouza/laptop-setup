@@ -3,7 +3,7 @@
 set -e
 
 OWNER=${OWNER:-fss}
-PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip qemu-kvm libvirt-bin virtinst virtualbox-5.0 dkms libvirt-dev gvfs-bin firmware-iwlwifi google-chrome-stable"
+PACKAGES="curl git mercurial clang build-essential spotify-client apt-transport-https vim-nox msttcorefonts python-dev libevent-dev libxml2-dev libxslt-dev libmysqlclient-dev mysql-server docker-engine youtube-dl python3 python3-dev mongodb-org parallel gfortran scala mono-devel rbenv ruby-build pypy tree python-virtualenv redis-server xclip qemu-kvm libvirt-bin virtinst virtualbox-5.0 dkms libvirt-dev gvfs-bin firmware-iwlwifi google-chrome-stable libnss3-tools"
 GO_VERSION=1.5.1
 
 export DEBIAN_FRONTEND=noninteractive
