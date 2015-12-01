@@ -46,7 +46,7 @@ popd
 source $HOME/.bashrc
 
 if [ -d ${DATA_DIR} ]; then
-	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt ${DATA_DIR}/Projects ${DATA_DIR}/rbenv
+	mkdir -p ${DATA_DIR}/Downloads ${DATA_DIR}/gdrive ${DATA_DIR}/opt ${DATA_DIR}/Projects ${DATA_DIR}/rbenv ${DATA_DIR}/go
 	ln -sf ${DATA_DIR}/Downloads $HOME/Downloads
 	ln -sf ${DATA_DIR}/gdrive $HOME/gdrive
 	ln -sf ${DATA_DIR}/opt $HOME/opt
