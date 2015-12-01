@@ -58,4 +58,4 @@ go get github.com/odeke-em/drive/cmd/drive
 
 popd
 
-vagrant plugin install vagrant-kvm
+vagrant plugin install vagrant-libvirt
