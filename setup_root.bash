@@ -91,11 +91,9 @@ fi
 ln -sf /usr/local/go/bin/* /usr/local/bin
 ln -sf /opt/firefox/firefox /usr/local/bin/firefox
 
-mkdir -p /usr/local/var /var/data/${OWNER}
-
 id ${OWNER} || useradd -m -s /bin/bash ${OWNER}
 
-chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go /var/data/${OWNER}
+chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var /usr/local/go
 
 popd
 
