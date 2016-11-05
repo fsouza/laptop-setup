@@ -5,45 +5,19 @@ set -e
 echo "Please ensure that you have the proper SSH keys and then press enter"
 read
 
-pushd ${HOME}
+if [ ! -d ${HOME}/.dotfiles ]; then
+	git clone git@github.com:fsouza/dotfiles.git ${HOME}/.dotfiles
+fi
+${HOME}/.dotfiles/bin/setup
 
-if [ ! -d .dotfiles ]; then
-	git clone git@github.com:fsouza/dotfiles.git .dotfiles
+if [ ! -d ${HOME}/.config/nvim ]; then
+	mkdir -p ${HOME}/.config
+	git clone git@github.com:fsouza/vimfiles.git ${HOME}/.config/nvim
 fi
 
-pushd .dotfiles
-git submodule update --init --recursive
-popd
-
-ln -sf .dotfiles/.gitconfig
-ln -sf .dotfiles/.gitignore_global
-ln -sf .dotfiles/.hgignore_global
-ln -sf .dotfiles/.hgrc
-ln -sf .dotfiles/.bash_profile .bashrc
-
-if [ ! -d .vim ]; then
-	git clone git@github.com:fsouza/vimfiles.git .vim
+if [ ! -d ${HOME}/.linuxbrew ]; then
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 fi
 
-pushd .vim
-git submodule update --init --recursive
-mkdir -p swp
-popd
-
-cat >.vimrc <<EOF
-source $HOME/.vim/.vimrc
-EOF
-
-mkdir -p $HOME/.config
-pushd $HOME/.config
-curl -L https://github.com/fsouza/laptop-setup/raw/master/data/dconf.tar.gz | tar -xzvf -
-popd
-
-source $HOME/.bashrc
-
-go get github.com/nsf/gocode/...
-go get github.com/odeke-em/drive/cmd/drive
-
-popd
-
-vagrant plugin install vagrant-libvirt
+source ${HOME}/.bashrc
+nvim +PlugInstall +GoUpdateBinaries +q
