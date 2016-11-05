@@ -3,7 +3,7 @@
 set -e
 
 OWNER=${OWNER:-fsouza}
-PACKAGES="curl git irb python-setuptools ruby perl-Thread-Queue gperf xclip"
+PACKAGES="curl git irb python-setuptools ruby perl-Thread-Queue gperf xclip libcurl-devel sqlite-devel"
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
 dnf check-update -y
@@ -36,3 +36,15 @@ chown -R ${OWNER}:${OWNER} /opt/firefox
 popd
 
 curl -sSL https://get.docker.com/ | sh
+
+# setup onedrive client
+curl -fsS https://dlang.org/install.sh | bash -s dmd
+source ~/dlang/*/activate
+git clone https://github.com/skilion/onedrive.git /tmp/onedrive
+
+pushd /tmp/onedrive
+make
+make install
+popd
+
+rm -rf ~/dlang

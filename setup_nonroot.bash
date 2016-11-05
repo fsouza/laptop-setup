@@ -15,6 +15,9 @@ if [ ! -d ${HOME}/.config/nvim ]; then
 	git clone git@github.com:fsouza/vimfiles.git ${HOME}/.config/nvim
 fi
 
+mkdir -p ${HOME}/.config/onedrive
+cp /usr/local/etc/onedrive.conf ${HOME}/.config/onedrive
+
 if [ ! -d ${HOME}/.linuxbrew ]; then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 fi
