@@ -2,22 +2,17 @@
 
 set -e
 
-OWNER=${OWNER:-fss}
-GROUPS="@virtualization "
-PACKAGES="curl git mercurial clang clang-devel vim python-devel libevent-devel libxml2-devel libxslt-devel community-mysql-server community-mysql-libs youtube-dl python3 python3-devel mongodb-server parallel gcc-gfortran mono-devel mono-basic pypy tree python-virtualenv redis xclip VirtualBox-5.0 dkms libvirt-devel golang vagrant spotify-client"
-
+OWNER=${OWNER:-fsouza}
+PACKAGES="curl git irb python-setuptools ruby perl-Thread-Queue gperf xclip"
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
-
-systemctl disable dnf-makecache.timer
 
 dnf check-update -y
 dnf upgrade -y
 
 dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
-
-dnf config-manager --add-repo=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
 dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
+dnf groupinstall 'Development Tools' -y
 dnf install ${PACKAGES} -y
 
 set +e
@@ -27,12 +22,7 @@ set -e
 
 pushd /tmp
 
-if [ ! -f /usr/bin/slack ]; then
-	dnf install -y https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-1.2.6-0.1.fc21.x86_64.rpm
-fi
-
 FIREFOX_FILE=firefox-developer-edition.tar.bz2
-
 if [ ! -d /opt/firefox ]; then
 	curl -Lo ${FIREFOX_FILE} "https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US"
 	mkdir -p /opt/firefox
@@ -41,8 +31,7 @@ if [ ! -d /opt/firefox ]; then
 fi
 ln -sf /opt/firefox/firefox /usr/bin/firefox
 
-mkdir -p /usr/local/var
-chown -R ${OWNER}:${OWNER} /opt/firefox /usr/local/var
+chown -R ${OWNER}:${OWNER} /opt/firefox
 
 popd
 
@@ -52,5 +41,5 @@ fi
 
 curl -sSL https://get.docker.com/ | sh
 
-curl --silent --location https://rpm.nodesource.com/setup | bash -
+curl -sL https://rpm.nodesource.com/setup_7.x | bash -
 dnf install nodejs -y
