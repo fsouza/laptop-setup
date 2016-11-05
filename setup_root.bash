@@ -35,11 +35,4 @@ chown -R ${OWNER}:${OWNER} /opt/firefox
 
 popd
 
-if [ ! -f /usr/local/bin/rustc ]; then
-	curl -sSf https://static.rust-lang.org/rustup.sh | bash -s -- --disable-sudo --yes
-fi
-
 curl -sSL https://get.docker.com/ | sh
-
-curl -sL https://rpm.nodesource.com/setup_7.x | bash -
-dnf install nodejs -y
