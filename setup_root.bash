@@ -3,7 +3,7 @@
 set -e
 
 OWNER=${OWNER:-fsouza}
-PACKAGES="curl git irb python-setuptools ruby perl-Thread-Queue gperf xclip libcurl-devel sqlite-devel"
+PACKAGES="curl git irb python-setuptools ruby perl-Thread-Queue gperf xclip libcurl-devel sqlite-devel spotify-client"
 echo "fastestmirror=true" >> /etc/dnf/dnf.conf
 
 dnf check-update -y
